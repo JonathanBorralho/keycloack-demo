@@ -17,6 +17,10 @@ export class ProdutoService {
       'page': `${page}`,
       'size': `${size}`
     };
-    return this.http.get<Page<Produto>>(`${this.API_URL}`, {params});
+    return this.http.get<Page<Produto>>(this.API_URL, {params});
+  }
+
+  findById(id: number) {
+    return this.http.get<Produto>(`${this.API_URL}/${id}`);
   }
 }

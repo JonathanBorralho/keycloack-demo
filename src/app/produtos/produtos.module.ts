@@ -7,10 +7,11 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
+import { ProdutoResolver } from './produto.resolver';
 
 export const routes: Routes = [
   { path: '', component: ProdutosListComponent },
-  { path: ':id', component: ProdutosCadastroComponent },
+  { path: ':id', component: ProdutosCadastroComponent, resolve: { produto: ProdutoResolver } },
 ];
 
 @NgModule({
