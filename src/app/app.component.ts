@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, ResolveEnd, ResolveStart, Router } from '@angular/router';
 import { KeycloakService } from 'keycloak-angular';
 
 @Component({
@@ -10,11 +8,31 @@ import { KeycloakService } from 'keycloak-angular';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(
-    private keycloakService: KeycloakService,
-    private library: FaIconLibrary,
-  ) {
-    this.library.addIcons(faEdit, faTrash);
+  isLoading = false;
+  progress = 0;
+
+  constructor(private keycloakService: KeycloakService, private router: Router) {
+    this.router.events.subscribe(
+      event => {
+        if (event instanceof NavigationStart) {
+          this.isLoading = true;
+          this.progress = 25;
+        }
+
+        if (event instanceof ResolveStart) {
+          this.progress = 50;
+        }
+
+        if (event instanceof ResolveEnd) {
+          this.progress = 75;
+        }
+
+        if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+          this.progress = 100;
+          this.isLoading = false;
+        }
+      }
+    );
   }
 
   logout() {

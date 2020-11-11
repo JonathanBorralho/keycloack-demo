@@ -14,13 +14,14 @@ import { HeaderComponent } from './header/header.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 registerLocaleData(localePt, 'pt');
 
 let keycloakService: KeycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, PessoasListComponent, HeaderComponent],
+  declarations: [AppComponent, PessoasListComponent, HeaderComponent, ProgressBarComponent],
   imports: [AppRoutingModule, BrowserModule, HttpClientModule, KeycloakAngularModule],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
