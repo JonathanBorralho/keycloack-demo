@@ -8,9 +8,11 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
 import { ProdutoResolver } from './produto.resolver';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   { path: '', component: ProdutosListComponent },
+  { path: 'novo', component: ProdutosCadastroComponent },
   { path: ':id', component: ProdutosCadastroComponent, resolve: { produto: ProdutoResolver } },
 ];
 
@@ -21,6 +23,7 @@ export const routes: Routes = [
     RouterModule.forChild(routes),
     FontAwesomeModule,
     NgbPaginationModule,
+    ReactiveFormsModule,
   ]
 })
 export class ProdutosModule { }

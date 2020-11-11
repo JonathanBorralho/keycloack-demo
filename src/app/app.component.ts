@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, ResolveEnd, ResolveStart, Router } from '@angular/router';
-import { KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ export class AppComponent {
   isLoading = false;
   progress = 0;
 
-  constructor(private keycloakService: KeycloakService, private router: Router) {
+  constructor(private router: Router) {
     this.router.events.subscribe(
       event => {
         if (event instanceof NavigationStart) {
@@ -33,10 +32,6 @@ export class AppComponent {
         }
       }
     );
-  }
-
-  logout() {
-    this.keycloakService.logout();
   }
 
 }

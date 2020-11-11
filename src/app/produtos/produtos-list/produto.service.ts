@@ -23,4 +23,8 @@ export class ProdutoService {
   findById(id: number) {
     return this.http.get<Produto>(`${this.API_URL}/${id}`);
   }
+
+  save(produto: Produto) {
+    return this.http.post<Produto>(this.API_URL, produto);
+  }
 }
