@@ -11,10 +11,10 @@
                 <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/pessoas" routerLinkActive="active">Pessoas</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" routerLink="/produtos" routerLinkActive="active">Produtos</a>
+            </li>
+            <li class="nav-item" *ngIf="isAdmin()">
+                <a class="nav-link" routerLink="/filiais" routerLinkActive="active">Filiais</a>
             </li>
         </ul>
         <ul class="navbar-nav">

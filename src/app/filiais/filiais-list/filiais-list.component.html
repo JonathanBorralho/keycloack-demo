@@ -1,0 +1,47 @@
+<div class="row" style="margin-top: 20px;">
+    <div class="col-auto mr-auto">
+        <h3>Filiais</h3>
+    </div>
+    <!-- <div class="col-auto">
+        <a [routerLink]="['/produtos/novo']" class="btn btn-primary">Novo</a>
+    </div> -->
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div *ngIf="page$ | async as page">
+            <table class="table" style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let filial of page.content">
+                        <th>{{ filial.id }}</th>
+                        <td>{{ filial.nome }}</td>
+                        <td>{{ filial.cidade }}</td>
+                        <td>{{ filial.estado }}</td>
+                        <td class="text-center">
+                            <a [routerLink]="['/filiais', filial.id]">
+                                <fa-icon icon="edit" size="lg"></fa-icon>
+                            </a>
+                            <a href="#" class="ml-2">
+                                <fa-icon icon="trash" size="lg" style="color: red;"></fa-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <ngb-pagination [collectionSize]="page.totalElements" [pageSize]="page.size" [page]="page.number + 1"
+                (pageChange)="onPageChange($event)">
+            </ngb-pagination>
+        </div>
+    </div>
+</div>

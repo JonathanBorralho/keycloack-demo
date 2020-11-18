@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
+export enum Roles {
+  ADMIN = 'ADMIN',
+  USER = 'USER'
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,7 +33,6 @@ export class AuthGuard extends KeycloakAuthGuard {
     if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
       return true;
     }
-
     // Allow the user to proceed if all the required roles are present.
     return requiredRoles.every((role) => this.roles.includes(role));
   }

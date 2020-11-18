@@ -9,11 +9,17 @@ import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
 import { ProdutoResolver } from './produto.resolver';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard, Roles } from '../authguard.guard';
 
-export const routes: Routes = [
+const routes: Routes = [
   { path: '', component: ProdutosListComponent },
   { path: 'novo', component: ProdutosCadastroComponent },
-  { path: ':id', component: ProdutosCadastroComponent, resolve: { produto: ProdutoResolver } },
+  {
+    path: ':id', component: ProdutosCadastroComponent,
+    resolve: { produto: ProdutoResolver },
+    canActivate: [AuthGuard],
+    data: { roles: [Roles.ADMIN] }
+  },
 ];
 
 @NgModule({
