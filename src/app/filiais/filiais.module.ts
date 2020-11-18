@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: FiliaisListComponent },
+  { path: 'nova', component: FiliaisCadastroComponent },
   { path: ':id', component: FiliaisCadastroComponent, resolve: { filial: FilialResolver } },
 ];
 

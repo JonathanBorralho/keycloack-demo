@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Filial } from '../models/filial.model';
+import { FilialService } from '../services/filial.service';
 
 @Component({
   selector: 'app-filiais-cadastro',
@@ -11,10 +12,16 @@ import { Filial } from '../models/filial.model';
 })
 export class FiliaisCadastroComponent implements OnInit {
 
-  filial: Filial;
+  private filial: Filial;
   form: FormGroup;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+  constructor(
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private filialService: FilialService
+  ) { }
+
+  ngOnInit(): void {
     this.filial = this.route.snapshot.data['filial'] as Filial;
 
     this.form = this.fb.group({
@@ -30,16 +37,15 @@ export class FiliaisCadastroComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    console.log(this.filial);
-  }
-
   get editando(): boolean {
     return this.filial != null;
   }
 
   salvar() {
-    console.log(this.filial);
+    if (this.form.valid) {
+      const filial = this.form.value as Filial;
+      this.filialService.save(filial).subscribe(f => console.log(f));
+    }
   }
 
 }

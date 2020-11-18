@@ -25,4 +25,15 @@ export class FilialService {
   findById(id: number) {
     return this.http.get<Filial>(`${API_URL}/${id}`);
   }
+
+  save(filial: Filial) {
+    if (filial.id) {
+      return this.update(filial);
+    }
+    return this.http.post<Filial>(API_URL, filial);
+  }
+
+  private update(filial: Filial) {
+    return this.http.put<Filial>(API_URL, filial);
+  }
 }

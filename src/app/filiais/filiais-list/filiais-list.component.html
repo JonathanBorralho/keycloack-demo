@@ -2,9 +2,9 @@
     <div class="col-auto mr-auto">
         <h3>Filiais</h3>
     </div>
-    <!-- <div class="col-auto">
-        <a [routerLink]="['/produtos/novo']" class="btn btn-primary">Novo</a>
-    </div> -->
+    <div class="col-auto">
+        <a [routerLink]="['/filiais/nova']" class="btn btn-primary">Nova</a>
+    </div>
 </div>
 
 
@@ -39,7 +39,9 @@
                 </tbody>
             </table>
 
-            <ngb-pagination [collectionSize]="page.totalElements" [pageSize]="page.size" [page]="page.number + 1"
+            <ngb-pagination
+                [collectionSize]="page.totalElements"
+                [pageSize]="page.size" [page]="page.number + 1"
                 (pageChange)="onPageChange($event)">
             </ngb-pagination>
         </div>
