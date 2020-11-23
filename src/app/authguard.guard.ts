@@ -4,7 +4,7 @@ import { KeycloakAuthGuard, KeycloakService } from 'keycloak-angular';
 
 export enum Roles {
   ADMIN = 'ADMIN',
-  USER = 'USER'
+  CAIXA = 'CAIXA'
 }
 
 @Injectable({

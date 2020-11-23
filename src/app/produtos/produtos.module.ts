@@ -18,7 +18,7 @@ const routes: Routes = [
     path: ':id', component: ProdutosCadastroComponent,
     resolve: { produto: ProdutoResolver },
     canActivate: [AuthGuard],
-    data: { roles: [Roles.ADMIN] }
+    data: { roles: [Roles.CAIXA] }
   },
 ];
 

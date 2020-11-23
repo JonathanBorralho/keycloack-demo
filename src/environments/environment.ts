@@ -3,16 +3,21 @@
 // The list of file replacements can be found in `angular.json`.
 import { KeycloakConfig } from 'keycloak-js';
 
+export enum Clients {
+  VENDA_ESTOQUE_APP = 'venda-estoque-app',
+  VENDA_ESTOQUE_API = 'venda-estoque-api'
+};
+
 const keycloakConfig: KeycloakConfig = {
   url: 'http://localhost:8080/auth',
   realm: 'myrealm',
-  clientId: 'venda-estoque-app'
+  clientId: Clients.VENDA_ESTOQUE_APP
 };
 
 export const environment = {
   production: false,
   keycloakConfig,
-  API_URL: 'http://localhost:8090'
+  API_URL: 'http://localhost:9090'
 };
 
 /*

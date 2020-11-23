@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
+import { Clients } from 'src/environments/environment';
 import { Roles } from '../authguard.guard';
 
 @Component({
@@ -19,11 +20,11 @@ export class HeaderComponent {
   }
 
   isUser(): boolean {
-    return this.isUserInRole(Roles.USER);
+    return this.isUserInRole(Roles.CAIXA);
   }
 
   private isUserInRole(role: string): boolean {
-    return this.keycloakService.isUserInRole(role, 'venda-estoque-api');
+    return this.keycloakService.isUserInRole(role, Clients.VENDA_ESTOQUE_APP);
   }
 }
 

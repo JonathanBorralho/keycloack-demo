@@ -8,6 +8,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { FiliaisCadastroComponent } from './filiais-cadastro/filiais-cadastro.component';
 import { FilialResolver } from './resolvers/filial.resolver';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: '', component: FiliaisListComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     FontAwesomeModule,
     NgbPaginationModule,
     ReactiveFormsModule,
+    SharedModule,
   ]
 })
 export class FiliaisModule { }
