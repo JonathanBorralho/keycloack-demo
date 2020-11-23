@@ -14,6 +14,13 @@
                 <a class="nav-link" routerLink="/filiais" routerLinkActive="active">Filiais</a>
             </li>
         </ul>
+        <ul class="navbar-nav" *ngIf="helloMessage">
+            <li class="nav-item">
+                <div style="color: white;">
+                    {{ helloMessage }}
+                </div>
+            </li>
+        </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)" (click)="logout()">Sair</a>

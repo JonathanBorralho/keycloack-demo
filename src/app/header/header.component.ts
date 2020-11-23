@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
 import { Clients } from 'src/environments/environment';
 import { Roles } from '../authguard.guard';
@@ -7,9 +7,20 @@ import { Roles } from '../authguard.guard';
   selector: 'app-header',
   templateUrl: './header.component.html',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  constructor(private keycloakService: KeycloakService) {}
+  helloMessage: string;
+
+  constructor(private keycloakService: KeycloakService) { }
+
+  async ngOnInit() {
+    this.keycloakService.isLoggedIn().then(async (loggedIn: boolean) => {
+      if (loggedIn) {
+        const profile = await this.keycloakService.loadUserProfile();
+        this.helloMessage = `Olá, ${profile.firstName}!`;
+      }
+    });
+  }
 
   logout() {
     this.keycloakService.logout();
