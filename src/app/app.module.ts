@@ -9,19 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './authguard.guard';
 
 import { AppComponent } from './app.component';
-import { PessoasListComponent } from './pessoas-list/pessoas-list.component';
 import { HeaderComponent } from './header/header.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 registerLocaleData(localePt, 'pt');
 
 let keycloakService: KeycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, PessoasListComponent, HeaderComponent, ProgressBarComponent],
+  declarations: [AppComponent, HeaderComponent, ProgressBarComponent],
   imports: [AppRoutingModule, BrowserModule, HttpClientModule, KeycloakAngularModule],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
