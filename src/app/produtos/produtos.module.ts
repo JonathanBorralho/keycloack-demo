@@ -7,7 +7,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
-import { ProdutoResolver } from './produto.resolver';
+import { ProdutoResolver } from './resolvers/produto.resolver';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard, Roles } from '../authguard.guard';
 

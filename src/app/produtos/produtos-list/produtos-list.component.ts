@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { switchMap } from "rxjs/operators";
 import { Page } from 'src/app/util/page';
-import { ProdutoService } from './produto.service';
-import { Produto } from '../produto.model';
+import { ProdutoService } from '../services/produto.service';
+import { Produto } from '../models/produto.model';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';

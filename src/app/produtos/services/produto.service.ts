@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Page } from 'src/app/util/page';
-import { Produto } from '../produto.model';
+import { Produto } from '../models/produto.model';
 import { environment as env } from "../../../environments/environment";
 
 @Injectable({
