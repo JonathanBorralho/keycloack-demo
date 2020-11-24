@@ -5,12 +5,10 @@ import { environment } from '../environments/environment';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthGuard } from './authguard.guard';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -20,15 +18,20 @@ registerLocaleData(localePt, 'pt');
 let keycloakService: KeycloakService = new KeycloakService();
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, ProgressBarComponent],
-  imports: [AppRoutingModule, BrowserModule, HttpClientModule, KeycloakAngularModule],
+  declarations: [AppComponent],
+  imports: [
+    CoreModule,
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    KeycloakAngularModule
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     {
       provide: KeycloakService,
       useValue: keycloakService
     },
-    AuthGuard,
   ],
   entryComponents: [AppComponent],
 })

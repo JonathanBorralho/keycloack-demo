@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { SharedModule } from '../shared/shared.module';
+import { ProdutoResolver } from './resolvers/produto.resolver';
+import { AuthGuard, Roles } from '../core/guards/authguard.guard';
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
-import { ProdutoResolver } from './resolvers/produto.resolver';
-import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard, Roles } from '../authguard.guard';
 
 const routes: Routes = [
   { path: '', component: ProdutosListComponent },
@@ -27,8 +25,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FontAwesomeModule,
-    NgbPaginationModule,
+    SharedModule,
     ReactiveFormsModule,
   ]
 })

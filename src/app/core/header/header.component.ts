@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KeycloakService } from 'keycloak-angular';
+import { Roles } from 'src/app/core/guards/authguard.guard';
 import { Clients } from 'src/environments/environment';
-import { Roles } from '../authguard.guard';
 
 @Component({
   selector: 'app-header',

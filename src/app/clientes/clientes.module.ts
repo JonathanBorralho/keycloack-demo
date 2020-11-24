@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { SharedModule } from '../shared/shared.module';
+import { ClienteResolver } from './resolvers/cliente.resolver';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { ClientesCadastroComponent } from './clientes-cadastro/clientes-cadastro.component';
-import { ClienteResolver } from './resolvers/cliente.resolver';
-import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: ClientesListComponent },
@@ -25,8 +23,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NgbPaginationModule,
-    FontAwesomeModule,
+    SharedModule,
     ReactiveFormsModule,
   ]
 })
