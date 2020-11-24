@@ -1,31 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Page } from 'src/app/util/page';
+import { environment as env } from "src/environments/environment";
+
 import { Produto } from '../models/produto.model';
-import { environment as env } from "../../../environments/environment";
+import { BaseEntityService } from 'src/app/util/base-entity-service';
+
+const API_URL = `${env.API_URL}/produtos`;
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProdutoService {
+export class ProdutoService extends BaseEntityService<Produto> {
 
-  private API_URL = `${env.API_URL}/produtos`;
-
-  constructor(private http: HttpClient) { }
-
-  findAll(page: number = 0, size: number = 5) {
-    const params = {
-      'page': `${page}`,
-      'size': `${size}`
-    };
-    return this.http.get<Page<Produto>>(this.API_URL, {params});
+  constructor(http: HttpClient) {
+    super(http, API_URL);
   }
 
-  findById(id: number) {
-    return this.http.get<Produto>(`${this.API_URL}/${id}`);
-  }
-
-  save(produto: Produto) {
-    return this.http.post<Produto>(this.API_URL, produto);
-  }
 }

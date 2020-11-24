@@ -2,38 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 
-import { Page } from 'src/app/util/page';
 import { Filial } from '../models/filial.model';
+import { BaseEntityService } from 'src/app/util/base-entity-service';
 
 const API_URL = `${env.API_URL}/filiais`;
 
 @Injectable({
   providedIn: 'root'
 })
-export class FilialService {
+export class FilialService extends BaseEntityService<Filial> {
 
-  constructor(private http: HttpClient) { }
-
-  findAll(page: number = 0, size: number = 5) {
-    const params = {
-      'page': `${page}`,
-      'size': `${size}`,
-    };
-    return this.http.get<Page<Filial>>(API_URL, { params });
+  constructor(http: HttpClient) {
+    super(http, API_URL);
   }
 
-  findById(id: number) {
-    return this.http.get<Filial>(`${API_URL}/${id}`);
-  }
-
-  save(filial: Filial) {
-    if (filial.id) {
-      return this.update(filial);
-    }
-    return this.http.post<Filial>(API_URL, filial);
-  }
-
-  private update(filial: Filial) {
-    return this.http.put<Filial>(API_URL, filial);
-  }
 }
