@@ -1,0 +1,6 @@
+<ngb-toast
+  [ngClass]="toastClass(toast.severity)"
+  *ngFor="let toast of toasts"
+  [header]="toast.header" [autohide]="true" [delay]="5000"
+  (hide)="remove(toast)">{{toast.body}}
+</ngb-toast>
