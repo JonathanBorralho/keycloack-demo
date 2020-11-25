@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 import { ToastSeverity } from 'src/app/core/toast/toast.message';
 import { ToastService } from 'src/app/core/toast/toast.service';
 import { Cliente } from '../models/cliente.model';
@@ -14,6 +15,8 @@ export class ClientesCadastroComponent implements OnInit {
 
   cliente: Cliente;
   form: FormGroup;
+
+  loading: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,10 +45,11 @@ export class ClientesCadastroComponent implements OnInit {
 
   salvar() {
     if (this.form.valid) {
+      this.loading = true;
       const cliente = this.form.value as Cliente;
-
       this.clienteService
         .save(cliente)
+        .pipe(finalize(() => this.loading = false))
         .subscribe(this.onSuccess, this.onError);
     }
   }

@@ -12,7 +12,9 @@
                 <input type="text" class="form-control" id="nome" formControlName="nome">
             </div>
 
-            <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Salvar</button>
+            <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid || loading">
+                {{ loading ? 'Salvando...' : 'Salvar'}}
+            </button>
             <a [routerLink]="['/clientes']" class="btn btn-secondary mt-3 ml-2">Voltar</a>
         </form>
     </div>
