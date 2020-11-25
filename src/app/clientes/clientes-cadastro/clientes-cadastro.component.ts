@@ -52,7 +52,7 @@ export class ClientesCadastroComponent implements OnInit {
 
   private onSuccess = (cliente: Cliente) => {
     this.toaster.show({
-      header: 'Produtos',
+      header: 'Clientes',
       body: `${this.editando ? 'Edição realizada' : 'Cadastro realizado'} com sucesso!`,
       severity: ToastSeverity.SUCCESS,
     });
@@ -61,7 +61,7 @@ export class ClientesCadastroComponent implements OnInit {
 
   private onError = (error: any) => {
     this.toaster.show({
-      header: 'Produtos',
+      header: 'Clientes',
       body: 'Houve um erro!',
       severity: ToastSeverity.DANGER,
     });
