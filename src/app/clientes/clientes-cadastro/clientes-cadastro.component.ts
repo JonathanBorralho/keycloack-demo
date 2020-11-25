@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastSeverity } from 'src/app/core/toast/toast.message';
+import { ToastService } from 'src/app/core/toast/toast.service';
 import { Cliente } from '../models/cliente.model';
 import { ClienteService } from '../services/cliente.service';
 
@@ -16,7 +18,9 @@ export class ClientesCadastroComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private clienteService: ClienteService
+    private router: Router,
+    private clienteService: ClienteService,
+    private toaster: ToastService,
   ) { }
 
   ngOnInit(): void {
@@ -39,10 +43,28 @@ export class ClientesCadastroComponent implements OnInit {
   salvar() {
     if (this.form.valid) {
       const cliente = this.form.value as Cliente;
-      this.clienteService.save(cliente).subscribe(saved => {
-        console.log(saved);
-      });
+
+      this.clienteService
+        .save(cliente)
+        .subscribe(this.onSuccess, this.onError);
     }
+  }
+
+  private onSuccess = (cliente: Cliente) => {
+    this.toaster.show({
+      header: 'Produtos',
+      body: `${this.editando ? 'Edição realizada' : 'Cadastro realizado'} com sucesso!`,
+      severity: ToastSeverity.SUCCESS,
+    });
+    this.router.navigate(['clientes']);
+  }
+
+  private onError = (error: any) => {
+    this.toaster.show({
+      header: 'Produtos',
+      body: 'Houve um erro!',
+      severity: ToastSeverity.DANGER,
+    });
   }
 
 }
