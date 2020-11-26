@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 
 import { CaixaComponent } from './caixa/caixa.component';
 import { IncrementerComponent } from './incrementer/incrementer.component';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', redirectTo: '/pedidos/caixa', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     SharedModule,
+    NgbTypeaheadModule,
   ]
 })
 export class PedidosModule { }

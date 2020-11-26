@@ -4,11 +4,17 @@
     </div>
 </div>
 
+<ng-template #rt let-r="result" let-t="term">
+    <ngb-highlight [result]="r.descricao" [term]="t"></ngb-highlight> - {{ r.valorUnitario | currency: 'BRL' }}
+</ng-template>
+
 <div class="row" style="margin-top: 20px;">
     <div class="col">
         <div class="form-group">
             <label for="search_produto">Produto</label>
-            <input type="text" class="form-control" id="search_produto">
+            <input #input type="text" class="form-control" id="search_produto" placeholder="Digite aqui..."
+                [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
+                (selectItem)="onSelect($event)">
         </div>
     </div>
 </div>
@@ -43,9 +49,11 @@
                 </tbody>
             </table>
     
-            <button type="button" class="btn btn-success mt-3" (click)="adicionar()">Finalizar</button>
+            <button type="button" class="btn btn-success mt-3"
+                [disabled]="form.invalid" (click)="salvar()">
+                Finalizar
+            </button>
     
-            <button type="submit" class="btn btn-success mt-3 ml-2" [disabled]="form.invalid">Salvar</button>
         </div>
     </div>
 </form>
