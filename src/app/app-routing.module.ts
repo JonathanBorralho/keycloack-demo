@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'pedidos', 
+    loadChildren: () => import('./pedidos/pedidos.module').then(m => m.PedidosModule),
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

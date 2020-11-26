@@ -1,0 +1,52 @@
+<div class="row" style="margin-top: 20px;">
+    <div class="col">
+        <h3>Novo Pedido</h3>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col">
+        <div class="form-group">
+            <label for="search_produto">Produto</label>
+            <input type="text" class="form-control" id="search_produto">
+        </div>
+    </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="salvar()">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center">Quantidade</th>
+                        <th>Fabricante</th>
+                        <th>Descrição</th>
+                        <th class="text-center">Valor Unitário</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of itens; index as i" [formGroup]="item">
+                        <td class="text-center">
+                            <app-incrementer formControlName="quantidade"></app-incrementer>
+                        </td>
+                        <td>{{ item.get('produto.fabricante')?.value }}</td>
+                        <td>{{ item.get('produto.descricao')?.value }}</td>
+                        <td class="text-center">{{ item.get('valorUnitario')?.value | currency: 'BRL' }}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-danger btn-sm" (click)="removerItem(i)">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <button type="button" class="btn btn-success mt-3" (click)="adicionar()">Finalizar</button>
+    
+            <button type="submit" class="btn btn-success mt-3 ml-2" [disabled]="form.invalid">Salvar</button>
+        </div>
+    </div>
+</form>
+
