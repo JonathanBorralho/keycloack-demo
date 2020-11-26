@@ -8,22 +8,37 @@
     <ngb-highlight [result]="r.descricao" [term]="t"></ngb-highlight> - {{ r.valorUnitario | currency: 'BRL' }}
 </ng-template>
 
-<div class="row" style="margin-top: 20px;">
-    <div class="col">
-        <div class="form-group">
-            <label for="search_produto">Produto</label>
-            <input #input type="text" class="form-control" id="search_produto" placeholder="Digite aqui..."
-                [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
-                (selectItem)="onSelect($event)">
+<form [formGroup]="form" (ngSubmit)="salvar()" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="search_filial">Filial</label>
+                <input type="text" class="form-control" id="search_filial"
+                    placeholder="Digite aqui..."
+                    formControlName="filial"
+                    [ngbTypeahead]="searchFilial"
+                    [resultFormatter]="filialFormatter"
+                    [inputFormatter]="filialFormatter"
+                    [editable]="false">
+            </div>
         </div>
     </div>
-</div>
 
-<form [formGroup]="form" (ngSubmit)="salvar()">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="search_produto">Produto</label>
+                <input #input type="text" class="form-control" id="search_produto" placeholder="Digite aqui..."
+                    [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"
+                    (selectItem)="onSelect($event)">
+            </div>
+        </div>
+    </div>
+
     <div class="row" style="margin-top: 20px;">
         <div class="col">
             <table class="table table-striped">
-                <thead>
+                <thead class="thead-dark">
                     <tr>
                         <th class="text-center">Quantidade</th>
                         <th>Fabricante</th>

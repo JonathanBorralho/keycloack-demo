@@ -9,6 +9,8 @@ import { NgbTypeaheadSelectItemEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { Produto } from 'src/app/produtos/models/produto.model';
 import { ProdutoService } from 'src/app/produtos/services/produto.service';
+import { FilialService } from 'src/app/filiais/services/filial.service';
+import { Filial } from 'src/app/filiais/models/filial.model';
 
 @Component({
   selector: 'app-caixa',
@@ -21,6 +23,7 @@ export class CaixaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private produtoService: ProdutoService,
+    private filialService: FilialService,
     private library: FaIconLibrary
   ) {
     this.library.addIcons(faTimes);
@@ -29,7 +32,7 @@ export class CaixaComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       'tipo': 'ENTRADA',
-      'filial': null,
+      'filial': [null, Validators.required],
       'itens': this.fb.array([], Validators.required),
     });
   }
@@ -96,5 +99,16 @@ export class CaixaComponent implements OnInit {
   private getItensFormArray(): FormArray {
     return this.form.get('itens') as FormArray;
   }
+
+  searchFilial = (text$: Observable<string>) => {
+    return text$.pipe(
+      filter(text => text.trim().length > 2),
+      distinctUntilChanged(),
+      debounceTime(300),
+      switchMap(text => this.filialService.search(text))
+    );
+  }
+
+  filialFormatter = (f: Filial) => `${f.nome} - ${f.cidade}`;
 
 }
