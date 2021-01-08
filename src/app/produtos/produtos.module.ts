@@ -9,6 +9,8 @@ import { AuthGuard, Roles } from '../core/guards/authguard.guard';
 import { ProdutosListComponent } from './produtos-list/produtos-list.component';
 import { ProdutosCadastroComponent } from './produtos-cadastro/produtos-cadastro.component';
 
+import { NgxCurrencyModule } from "ngx-currency";
+
 const routes: Routes = [
   { path: '', component: ProdutosListComponent },
   { path: 'novo', component: ProdutosCadastroComponent },
@@ -27,6 +29,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
+    NgxCurrencyModule,
   ]
 })
 export class ProdutosModule { }

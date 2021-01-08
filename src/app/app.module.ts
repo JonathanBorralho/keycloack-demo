@@ -5,6 +5,9 @@ import { environment } from '../environments/environment';
 
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
+import { NgxCurrencyModule } from "ngx-currency";
+import { customCurrencyMaskConfig } from './util/currency-mask-config';
+
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,7 +27,8 @@ let keycloakService: KeycloakService = new KeycloakService();
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    KeycloakAngularModule
+    KeycloakAngularModule,
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

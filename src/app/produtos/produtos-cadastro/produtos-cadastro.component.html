@@ -27,7 +27,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">R$</span>
                 </div>
-                <input type="text" class="form-control" id="valor_unitario" formControlName="valorUnitario">
+                <input type="text" class="form-control" id="valor_unitario" formControlName="valorUnitario" currencyMask>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Salvar</button>
