@@ -7,10 +7,10 @@ import { ProdutoService } from '../services/produto.service';
 @Injectable({ providedIn: 'root' })
 export class ProdutoResolver implements Resolve<Produto> {
 
-    constructor(private produtoService: ProdutoService) { }
+  constructor(private produtoService: ProdutoService) { }
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Produto> {
-        const id = route.paramMap.get('id');
-        return this.produtoService.findById(+id);
-    }
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Produto> {
+    const id = route.paramMap.get('id');
+    return this.produtoService.findById(+id);
+  }
 }

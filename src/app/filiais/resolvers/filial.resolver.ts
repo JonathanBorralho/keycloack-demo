@@ -6,10 +6,10 @@ import { FilialService } from '../services/filial.service';
 
 @Injectable({ providedIn: 'root' })
 export class FilialResolver implements Resolve<Filial> {
-    constructor(private filialService: FilialService) {}
+  constructor(private filialService: FilialService) { }
 
-    resolve(route: ActivatedRouteSnapshot, _: RouterStateSnapshot): Observable<Filial> {
-        const id = route.paramMap.get('id');
-        return this.filialService.findById(+id);
-    }
+  resolve(route: ActivatedRouteSnapshot, _: RouterStateSnapshot): Observable<Filial> {
+    const id = route.paramMap.get('id');
+    return this.filialService.findById(+id);
+  }
 }

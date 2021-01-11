@@ -10,8 +10,8 @@ const API_URL = `${env.API_URL}/clientes`;
 @Injectable({ providedIn: 'root' })
 export class ClienteService extends BaseEntityService<Cliente> {
 
-    constructor(http: HttpClient) {
-        super(http, API_URL);
-    }
+  constructor(http: HttpClient) {
+    super(http, API_URL);
+  }
 
 }
