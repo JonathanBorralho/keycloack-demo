@@ -31,6 +31,7 @@
     "keycloak-angular": "^8.0.1",
     "keycloak-js": "^11.0.3",
     "ngx-currency": "^2.5.2",
+    "ngx-loader-indicator": "^10.0.0",
     "ngx-shimmer-loading": "0.0.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
